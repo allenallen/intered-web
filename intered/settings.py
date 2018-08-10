@@ -150,8 +150,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # If these are not defined, the EC2 instance profile and IAM role are used.
 # This requires you to add boto3 (or botocore, which is a dependency of boto3)
 # to your project dependencies.
-AWS_ACCESS_KEY_ID = 'AKIAIOTC6Z44QFYHWY7A'
-AWS_SECRET_ACCESS_KEY = 'fOFoAFaD1erwe+6E8TFDvmGjbOIobQHTjH3ejTWm'
+AWS_ACCESS_KEY_ID = 'AKIAIHYZN7HCCHYAIWIQ'
+AWS_SECRET_ACCESS_KEY = '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'
 
 AWS_STORAGE_BUCKET_NAME = 'intered-files'
 
