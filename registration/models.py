@@ -10,6 +10,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import timezone
+from s3direct.fields import S3DirectField
 
 image_storage = FileSystemStorage(
     location=u'{0}/logos/'.format(settings.MEDIA_ROOT),
@@ -23,7 +24,8 @@ def image_directory_path(instance, filename):
 
 class Event(models.Model):
     name = models.CharField(max_length=200, verbose_name='Event Name')
-    logo = models.ImageField(verbose_name='Logo for the event', upload_to=image_directory_path, storage=image_storage)
+    # logo = models.ImageField(verbose_name='Logo for the event', upload_to=image_directory_path, storage=image_storage)
+    logo = S3DirectField(dest='intered-files')
     start_date = models.DateField()
     end_date = models.DateField()
     event_registration_url = models.URLField(verbose_name="Event Registration Link", null=True, blank=True)

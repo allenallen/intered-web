@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'qr_code',
     'django_inlinecss',
-    'django.contrib.admin'
+    'django.contrib.admin',
+    's3direct'
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,49 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# AWS
+
+# If these are not defined, the EC2 instance profile and IAM role are used.
+# This requires you to add boto3 (or botocore, which is a dependency of boto3)
+# to your project dependencies.
+AWS_ACCESS_KEY_ID = 'AKIAIOTC6Z44QFYHWY7A'
+AWS_SECRET_ACCESS_KEY = 'fOFoAFaD1erwe+6E8TFDvmGjbOIobQHTjH3ejTWm'
+
+AWS_STORAGE_BUCKET_NAME = 'intered-files'
+
+# The region of your bucket, more info:
+# http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
+S3DIRECT_REGION = 'ap-northeast-1'
+
+
+# Destinations, with the following keys:
+#
+# key [required] Where to upload the file to, can be either:
+#     1. '/' = Upload to root with the original filename.
+#     2. 'some/path' = Upload to some/path with the original filename.
+#     3. functionName = Pass a function and create your own path/filename.
+# key_args [optional] Arguments to be passed to 'key' if it's a function.
+# auth [optional] An ACL function to whether the current Django user can perform this action.
+# allowed [optional] List of allowed MIME types.
+# acl [optional] Give the object another ACL rather than 'public-read'.
+# cache_control [optional] Cache control headers, eg 'max-age=2592000'.
+# content_disposition [optional] Useful for sending files as attachments.
+# bucket [optional] Specify a different bucket for this particular object.
+# server_side_encryption [optional] Encryption headers for buckets that require it.
+
+def create_filename_intered(filename):
+    import uuid
+    ext = filename.split('.')[-1]
+    filename = '%s.%s' % (uuid.uuid4().hex, ext)
+    return os.path.join('media/logos/', filename)
+
+
+S3DIRECT_DESTINATIONS = {
+    'intered-files': {
+        'key': create_filename_intered,
+        'auth': lambda u: u.is_authenticated,
+        'allowed': ['image/jpeg', 'image/png'],
+        'content_length_range': (0, 2000000),
+    }
+}
