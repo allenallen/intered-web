@@ -7,6 +7,7 @@
         <h2>{{ event_name }}</h2>
     </div>
     <div class="row">
+        <div class="w-100"></div>
         <div class="col-md order-md">
             <h4 class="mb-3">Student Registration</h4>
             <form method="POST">
@@ -47,6 +48,7 @@
                         {% endif %}
                     </div>
                 </div>
+                <div class="w-100"></div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="email">Email</label>
@@ -65,7 +67,7 @@
                             {% render_field form.email class="form-control" type="email" %}
                         {% endif %}
                     </div>
-                    <div class="col-md mb-3 date">
+                    <div class="col-md-3 mb-3 date">
                         <label for="date_of_birth">Birthday</label>
                         {% if form.is_bound %}
                             {% if form.date_of_birth.errors %}
@@ -82,7 +84,7 @@
                             {% render_field form.date_of_birth class="form-control datepicker" autocomplete="off" %}
                         {% endif %}
                     </div>
-                    <div class="col-md mb-3">
+                    <div class="col-md-3 mb-3">
                         <label for="gender">Gender</label>
                         {% if form.is_bound %}
                             {% if form.gender.errors %}
@@ -100,6 +102,7 @@
                         {% endif %}
                     </div>
                 </div>
+                <div class="w-100"></div>
                 <div class="mb-3">
                     <label for="school">School</label>
                     {% if form.is_bound %}
@@ -117,6 +120,7 @@
                         {% render_field form.school class="form-control custom-select d-block w-100" %}
                     {% endif %}
                 </div>
+                <div class="w-100"></div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="shs_track">SHS Track</label>
