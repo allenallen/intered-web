@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="{{ event_logo.url }}" alt="" width="40%">
+        <h2>{{ event_name }}</h2>
+    </div>
+    <div class="row">
+        <div class="col-md order-md">
+            <h4 class="mb-3">Student Registration</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md mb-3">
+            <p>Thank you for joining us!</p>
+            <p>Please check you email and have your QR Code image saved on your phone or print it, it will serve as your ticket to the event!</p>
+        </div>
+    </div>
+{% endblock %}

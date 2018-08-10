@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+{% block content %}
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="{{ event_logo.url }}" alt="" width="40%">
+        <h2>{{ event_name }}</h2>
+    </div>
+    <div class="row">
+        <div class="col-md order-md">
+            <h4 class="mb-3">Student Registration</h4>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="last_name">Last Name</label>
+                        {% if form.is_bound %}
+                            {% if form.last_name.errors %}
+                                {% render_field form.last_name class="form-control is-invalid" %}
+                                {% for error in form.last_name.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {% render_field form.last_name class="form-control is-valid" %}
+                            {% endif %}
+                        {% else %}
+                            {% render_field form.last_name class="form-control" %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="first_name">First Name</label>
+                        {% if form.is_bound %}
+                            {% if form.first_name.errors %}
+                                {% render_field form.first_name class="form-control is-invalid" %}
+                                {% for error in form.first_name.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {% render_field form.first_name class="form-control is-valid" %}
+                            {% endif %}
+                        {% else %}
+                            {% render_field form.first_name class="form-control" %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="email">Email</label>
+                        {% if form.is_bound %}
+                            {% if form.email.errors %}
+                                {% render_field form.email class="form-control is-invalid" %}
+                                {% for error in form.email.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {% render_field form.email class="form-control is-valid" %}
+                            {% endif %}
+                        {% else %}
+                            {% render_field form.email class="form-control" type="email" %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md mb-3 date">
+                        <label for="date_of_birth">Birthday</label>
+                        {% if form.is_bound %}
+                            {% if form.date_of_birth.errors %}
+                                {% render_field form.date_of_birth class="form-control is-invalid datepicker" autocomplete="off" %}
+                                {% for error in form.date_of_birth.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {% render_field form.date_of_birth class="form-control is-valid datepicker" autocomplete="off" %}
+                            {% endif %}
+                        {% else %}
+                            {% render_field form.date_of_birth class="form-control datepicker" autocomplete="off" %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md mb-3">
+                        <label for="gender">Gender</label>
+                        {% if form.is_bound %}
+                            {% if form.gender.errors %}
+                                {% render_field form.gender class="form-control custom-select d-block w-100 is-invalid" %}
+                                {% for error in form.gender.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {% render_field form.gender class="form-control custom-select d-block w-100 is-valid" %}
+                            {% endif %}
+                        {% else %}
+                            {% render_field form.gender class="form-control custom-select d-block w-100" %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="school">School</label>
+                    {% if form.is_bound %}
+                        {% if form.school.errors %}
+                            {% render_field form.school class="form-control custom-select d-block w-100 is-invalid" %}
+                            {% for error in form.school.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field form.school class="form-control custom-select d-block w-100 is-valid" %}
+                        {% endif %}
+                    {% else %}
+                        {% render_field form.school class="form-control custom-select d-block w-100" %}
+                    {% endif %}
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="shs_track">SHS Track</label>
+                        {% if form.is_bound %}
+                            {% if form.shs_track.errors %}
+                                {% render_field form.shs_track class="form-control custom-select d-block w-100 is-invalid" %}
+                                {% for error in form.shs_track.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {% render_field form.shs_track class="form-control custom-select d-block w-100 is-valid" %}
+                            {% endif %}
+                        {% else %}
+                            {% render_field form.shs_track class="form-control custom-select d-block w-100" %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="projected_course">Projected Course</label>
+                        {% if form.is_bound %}
+                            {% if form.projected_course.errors %}
+                                {% render_field form.projected_course class="form-control is-invalid" %}
+                                {% for error in form.projected_course.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {% render_field form.projected_course class="form-control is-valid" %}
+                            {% endif %}
+                        {% else %}
+                            {% render_field form.projected_course class="form-control" %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1900:2012",
+            });
+        });
+    </script>
+{% endblock %}
