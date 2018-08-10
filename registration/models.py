@@ -36,7 +36,6 @@ class Event(models.Model):
 @receiver(post_save, sender=Event)
 def createUrlLink(sender, instance, created, **kwargs):
     if instance.event_added is False:
-        instance.generate_qrcode()
         instance.event_registration_url = reverse('register', args=[str(instance.pk)])
         instance.event_added = True
         instance.save()
