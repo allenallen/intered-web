@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'o)hzeq@40zpv-_hslor_)+bd4c&)-)^zl3n%3z_q_sr^hc=-0k')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
@@ -150,8 +150,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # If these are not defined, the EC2 instance profile and IAM role are used.
 # This requires you to add boto3 (or botocore, which is a dependency of boto3)
 # to your project dependencies.
-AWS_ACCESS_KEY_ID = 'AKIAIHYZN7HCCHYAIWIQ'
-AWS_SECRET_ACCESS_KEY = 'LD3yXedgsoGunS28te8OgQ30K3MvLDOB2gVXPDiQ'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_SECRET_KEY', '')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET__ACCESS_KEY', '')
 
 AWS_STORAGE_BUCKET_NAME = 'intered-files'
 
