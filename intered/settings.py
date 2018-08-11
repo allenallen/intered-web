@@ -185,7 +185,6 @@ def create_filename_intered(filename):
 S3DIRECT_DESTINATIONS = {
     'intered-files': {
         'key': create_filename_intered,
-        'auth': lambda u: u.is_authenticated,
         'allowed': ['image/jpeg', 'image/png'],
         'content_length_range': (0, 2000000),
     }
