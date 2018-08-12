@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, static, url
-from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+
+from registration import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,8 +27,11 @@ urlpatterns = [
 urlpatterns += [
     url(r'^s3direct/', include('s3direct.urls')),
 ]
+# urlpatterns += [
+#     path('registration/', include('registration.urls'))
+# ]
 urlpatterns += [
-    path('registration/', include('registration.urls'))
+    path('<str:uuid>', views.registration, name='register')
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

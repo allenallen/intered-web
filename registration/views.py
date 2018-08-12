@@ -6,10 +6,11 @@ from registration.forms import RegistrationForm
 from registration.models import Event, Student
 
 
-def registration(request, pk):
+def registration(request, uuid):
     print('HERE')
     print(request.method)
-    event = Event.objects.get(pk=pk)
+    print(uuid)
+    event = Event.objects.get(event_uuid=uuid)
     if request.method == 'POST':
         print('HERE POST')
         form = RegistrationForm(request.POST)

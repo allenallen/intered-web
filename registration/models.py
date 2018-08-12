@@ -1,5 +1,6 @@
 import io
 import os
+import uuid
 
 import qrcode
 from django.conf import settings
@@ -31,6 +32,7 @@ class Event(models.Model):
     event_registration_url = models.URLField(verbose_name="Event Registration Link", null=True, blank=True,
                                              max_length=250)
     event_added = models.BooleanField(default=False)
+    event_uuid = models.CharField(max_length=5, blank=True, null=True)
 
     def __str__(self):
         return f'{self.name} ({self.start_date} - {self.end_date})'
@@ -39,7 +41,8 @@ class Event(models.Model):
 @receiver(post_save, sender=Event)
 def createUrlLink(sender, instance, created, **kwargs):
     if instance.event_added is False:
-        instance.event_registration_url = reverse('register', args=[str(instance.pk)])
+        instance.event_uuid = str(uuid.uuid4())[0:4]
+        instance.event_registration_url = reverse('register', args=[instance.event_uuid])
         instance.event_added = True
         instance.save()
 
