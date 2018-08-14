@@ -100,7 +100,8 @@ class Student(models.Model):
             box_size=6,
             border=4,
         )
-        qr.add_data(f'{self.email}|{self.first_name}|{self.last_name}')
+        qr.add_data(
+            f'{self.first_name}|{self.last_name}|{self.email}|{self.mobile}|{self.school}|{self.shs_track}|{self.projected_course}|{self.date_of_birth}|{self.gender}')
         qr.make(fit=True)
 
         img = qr.make_image()
