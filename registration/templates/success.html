@@ -12,4 +12,11 @@
             <p><i>Please check you email and have your QR Code image saved on your phone or print it, it will serve as your ticket to the event!</i></p>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-5 mb-3"></div>
+        <div class="col-md-2 mb-3">
+            <a href="{% url 'register' uuid=event_uuid%}" class="btn btn-info">Go Back to Registration Page</a>
+        </div>
+        <div class="col-md-5 mb-3"></div>
+    </div>
 {% endblock %}
