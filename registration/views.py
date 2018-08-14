@@ -25,6 +25,7 @@ def registration(request, uuid):
             email = form.cleaned_data['email']
             date_of_birth = form.cleaned_data['date_of_birth']
             gender = form.cleaned_data['gender']
+            mobile = form.cleaned_data['mobile']
 
             student = Student()
             student.last_name = last_name
@@ -35,6 +36,7 @@ def registration(request, uuid):
             student.email = email
             student.date_of_birth = date_of_birth
             student.gender = gender
+            student.mobile = mobile
             student.save()
 
             html_message = render_to_string('email_template.html', {'context': {'qr_string': student.email}})

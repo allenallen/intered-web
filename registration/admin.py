@@ -6,7 +6,7 @@ from .models import Student, SchoolList, Event, ShsTrack
 class StudentAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'last_name', 'first_name', 'school', 'shs_track', 'projected_course', 'email',
-        'date_of_birth',
+        'date_of_birth', 'mobile',
         'gender', 'date_registered')
 
 

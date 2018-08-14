@@ -52,7 +52,7 @@ class ShsTrack(models.Model):
     description = models.CharField(max_length=250)
 
     def __str__(self):
-        return self.description
+        return self.code
 
 
 class SchoolList(models.Model):
@@ -70,6 +70,7 @@ class Student(models.Model):
                                   verbose_name="Current SHS Track")
     projected_course = models.CharField(max_length=200, help_text="First choice of Course", verbose_name="Course")
     email = models.EmailField()
+    mobile = models.CharField(max_length=20, verbose_name="Mobile Number", null=True, blank=True)
     date_of_birth = models.DateField(verbose_name="Date of Birth")
     gender = models.CharField(max_length=1, choices=[('M', 'Male'), ('F', 'Female')])
     qr_code = models.ImageField(null=True, upload_to='qrcode')
