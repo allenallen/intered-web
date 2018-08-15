@@ -26,7 +26,7 @@ def image_directory_path(instance, filename):
 class Event(models.Model):
     name = models.CharField(max_length=200, verbose_name='Event Name')
     # logo = models.ImageField(verbose_name='Logo for the event', upload_to=image_directory_path, storage=image_storage)
-    logo = S3DirectField(dest='intered-files', max_length=250)
+    logo = S3DirectField(dest='intered-files', max_length=250,null=True,blank=True)
     start_date = models.DateField()
     end_date = models.DateField()
     event_registration_url = models.URLField(verbose_name="Event Registration Link", null=True, blank=True,

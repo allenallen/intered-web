@@ -135,8 +135,8 @@ MEDIA_ROOT = (
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'testerallentester@gmail.com'
-EMAIL_HOST_PASSWORD = '*4hwqzrbx8fgf8'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD', '')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 SECURE_CONTENT_TYPE_NOSNIFF = True
